@@ -6,10 +6,16 @@ apt update -y
 apt install -y docker.io
 systemctl start docker
 systemctl enable docker
-curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo gpasswd -a $USER docker
+newgrp docker
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-# docker-compose up -d
-# git clone https://github.com/PrefectHQ/prefect.git
+cd ~ && git clone https://github.com/mateo2181/data_analytics_football_2
+cd data_analytics_football_2
+mkdir -p logs
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+echo ${var.project} >> .env
+docker-compose up -d
 # python3 -m venv prefect-env
 # source prefect-env/bin/activate
 # cd prefect && python3 -m pip install .

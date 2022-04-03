@@ -99,7 +99,7 @@ with DAG(
             },
             "externalDataConfiguration": {
                 "sourceFormat": "PARQUET",
-                "sourceUris": [f"gs://{BUCKET}/{year}/*"],
+                "sourceUris": [f"gs://{BUCKET}/*"],
             },
         },
     )

@@ -39,7 +39,7 @@ resource "google_compute_instance" "airflow" {
   machine_type = var.machine_type
   zone         = var.region_instance
 
-  tags = ["airflow-server"]
+  tags = ["airflow-server","http-server","https-server"]
 
   boot_disk {
     initialize_params {
@@ -117,4 +117,12 @@ output server-ip {
 
 output project-name {
     value = var.project
+}
+
+output bucket {
+    value = "${local.data_lake_bucket}_${var.project}"
+}
+
+output dataset {
+    value = var.BQ_DATASET
 }
