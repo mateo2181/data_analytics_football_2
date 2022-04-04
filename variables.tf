@@ -37,3 +37,13 @@ variable "BQ_DATASET" {
   description = "BigQuery Dataset that raw data (from GCS) will be written to"
   type = string
 }
+
+variable "BQ_DATASET_DBT" {
+  description = "BigQuery Dataset used when run dbt build in dev."
+  type = string
+}
+
+variable "BQ_DATASET_PROD" {
+  description = "BigQuery Dataset used when run dbt build with target prod."
+  type = string
+}

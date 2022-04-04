@@ -8,6 +8,9 @@ Process files with football transfers data between 1999 and 2021 to get analytic
 ## Sources
 The origial repository with csv files: https://github.com/ewenme/transfers 
 
+## DBT project
+Repository: https://github.com/mateo2181/football_data_dbt
+
 ## Prerequisites
 - Installed locally:
     - Terraform (v1.1.7)
@@ -23,6 +26,15 @@ The origial repository with csv files: https://github.com/ewenme/transfers
 3. Run `terraform plan` to check which resources will be created/updated in GCP.
 4. Run `terraform apply` to create or udpate resources.
 
+## Setup without terraform
+1. From IAM in GCP (https://console.cloud.google.com/iam-admin/serviceaccounts) create a new service account, add a key associated to this account and download the credentials file, rename it to "google_credentials.json" and save the file in the root.
+2. Create a credentials folder in the root and paste inside your file "google_credentials.json".
+3. Run `$ cp .env.example .env` to create .env file
+4. Set variables in .env file (Run `id -u` to check AIRFLOW_UID value).
+5. Create a python environment (ex: with Anaconda run `$ conda create --name myenv` and activate it with `$ conda activate myenv` ) 
+6. Run `$ pip install -r requirements.txt`
+7. Run `$ docker-compose up`
+8. Go to http://localhost:8080 and log in to run dags (user: airflow, password: airflow)
 
 
 ## Architecture diagram

@@ -56,7 +56,13 @@ resource "google_compute_instance" "airflow" {
     }
   }
 
-  metadata_startup_script = file("startup.sh")
+  metadata_startup_script = templatefile("startup.sh", {
+    PROJECT = var.project,
+    BUCKET = "${local.data_lake_bucket}_${var.project}",
+    BG_DATASET = var.BQ_DATASET,
+    BG_DATASET_DBT = var.BQ_DATASET_DBT,
+    BG_DATASET_PROD = var.BQ_DATASET_PROD
+  })
 
   service_account {
     scopes = ["logging-write","monitoring-write"]
@@ -64,18 +70,18 @@ resource "google_compute_instance" "airflow" {
   allow_stopping_for_update = true
 }
 
-resource "google_compute_firewall" "default" {
-  name        = "open-airflow-server-to-world"
-  project     = var.project
-  network     = "default"
-  target_tags = ["airflow-server"]
-  source_ranges = ["0.0.0.0/0"]
+# resource "google_compute_firewall" "default" {
+#   name        = "open-airflow-server-to-world"
+#   project     = var.project
+#   network     = "default"
+#   target_tags = ["airflow-server"]
+#   source_ranges = ["0.0.0.0/0"]
 
-  allow {
-    protocol = "tcp"
-    ports    = ["80"]
-  }
-}
+#   allow {
+#     protocol = "tcp"
+#     ports    = ["80"]
+#   }
+# }
 
 # Data Lake Bucket
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
