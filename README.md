@@ -2,7 +2,10 @@
 
 Final project data enginerring zoomcamp: https://github.com/DataTalksClub/data-engineering-zoomcamp
 
-## Objective
+## Problem
+Based on football transfers data in the last 22 years, DataTalks Football Club :) want to be able to get as much information as possible to be able to hire new players for the new season with his budget available. 
+
+## Solution
 Process files with football transfers data between 1999 and 2021 to get analytics of players transfers in the main European football leagues.
 
 ## Sources
@@ -18,14 +21,6 @@ Repository: https://github.com/mateo2181/football_data_dbt
     - Docker with docker-compose
 - A project in Google Cloud Platform
 
-## Setup
-1. From IAM in GCP (https://console.cloud.google.com/iam-admin/serviceaccounts) create a new service account, add a key associated to this account and download the credentials file, rename it to "google_credentials.json" and save the file in the root.
-2. Create a credentials folder in the root and paste inside your file "google_credentials.json".
-2. Run `cp terraform.tfvars.example terraform.tfvars` 
-2. Run `terraform init`
-3. Run `terraform plan` to check which resources will be created/updated in GCP.
-4. Run `terraform apply` to create or udpate resources.
-
 ## Setup without terraform
 1. From IAM in GCP (https://console.cloud.google.com/iam-admin/serviceaccounts) create a new service account, add a key associated to this account and download the credentials file, rename it to "google_credentials.json" and save the file in the root.
 2. Create a credentials folder in the root and paste inside your file "google_credentials.json".
@@ -35,6 +30,14 @@ Repository: https://github.com/mateo2181/football_data_dbt
 6. Run `$ pip install -r requirements.txt`
 7. Run `$ docker-compose up`
 8. Go to http://localhost:8080 and log in to run dags (user: airflow, password: airflow)
+
+## Setup - WIP
+1. From IAM in GCP (https://console.cloud.google.com/iam-admin/serviceaccounts) create a new service account, add a key associated to this account and download the credentials file, rename it to "google_credentials.json" and save the file in the root.
+2. Create a credentials folder in the root and paste inside your file "google_credentials.json".
+2. Run `cp terraform.tfvars.example terraform.tfvars` 
+2. Run `terraform init`
+3. Run `terraform plan` to check which resources will be created/updated in GCP.
+4. Run `terraform apply` to create or udpate resources.
 
 
 ## Architecture diagram
